@@ -16,9 +16,7 @@ def cosine_similarity(a: List[float], b: List[float]) -> float:
 def inserting_distance(word1: str, word2: str, backward: bool = False) -> int:
     common_start = 0
     for i in range(min(len(word1), len(word2))):
-        if (not backward and word1[i] == word2[i]) or (
-            backward and word1[-i - 1] == word2[-i - 1]
-        ):
+        if (not backward and word1[i] == word2[i]) or (backward and word1[-i - 1] == word2[-i - 1]):
             common_start += 1
         else:
             break
@@ -26,6 +24,4 @@ def inserting_distance(word1: str, word2: str, backward: bool = False) -> int:
 
 
 def inserting_similarity(word1: str, word2: str, backward: bool = False) -> float:
-    return 1.0 - (
-        inserting_distance(word1, word2, backward) / max(len(word1), len(word2))
-    )
+    return 1.0 - (inserting_distance(word1, word2, backward) / max(len(word1), len(word2)))
