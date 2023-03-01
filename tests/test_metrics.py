@@ -1,7 +1,12 @@
 import unittest
 
-from src.simple_nlp_library.metrics import dot_product, frobenius_norm, cosine_similarity, inserting_distance, \
-    inserting_similarity
+from src.simple_nlp_library.metrics import (
+    dot_product,
+    frobenius_norm,
+    cosine_similarity,
+    inserting_distance,
+    inserting_similarity,
+)
 
 
 class TestMetrics(unittest.TestCase):
@@ -12,14 +17,16 @@ class TestMetrics(unittest.TestCase):
         self.assertEqual(frobenius_norm([1.0, 1.0, 1.0, 2.0, 3.0]), 4.0)
 
     def test_cosine_similarity(self):
-        self.assertAlmostEqual(cosine_similarity([1.0, 1.0, 1.0], [4.0, 4.0, 4.0]), 1.0, 1)
+        self.assertAlmostEqual(
+            cosine_similarity([1.0, 1.0, 1.0], [4.0, 4.0, 4.0]), 1.0, 1
+        )
 
     def test_inserting_distance(self):
-        self.assertEqual(inserting_distance('simple', 'simple'), 0)
-        self.assertEqual(inserting_distance('simple', 'simpler'), 1)
-        self.assertEqual(inserting_distance('easy', 'hard'), 4)
+        self.assertEqual(inserting_distance("simple", "simple"), 0)
+        self.assertEqual(inserting_distance("simple", "simpler"), 1)
+        self.assertEqual(inserting_distance("easy", "hard"), 4)
 
     def test_inserting_similarity(self):
-        self.assertEqual(inserting_similarity('simple', 'simple'), 1.0)
-        self.assertEqual(inserting_similarity('simple', 'simpler'), 1.0 - 1 / 7)
-        self.assertEqual(inserting_similarity('easy', 'hard'), 0.0)
+        self.assertEqual(inserting_similarity("simple", "simple"), 1.0)
+        self.assertEqual(inserting_similarity("simple", "simpler"), 1.0 - 1 / 7)
+        self.assertEqual(inserting_similarity("easy", "hard"), 0.0)
