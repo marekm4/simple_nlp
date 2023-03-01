@@ -10,7 +10,7 @@ python3 -m pip install --upgrade simple_nlp_library
 
 ### api
 
-#### retrieve_semantic_tokens
+#### semantic_tokens
 
 ```python
 preprocessing.semantic_tokens('The quick brown fox jumps over the lazy dog')
