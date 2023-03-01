@@ -26,7 +26,17 @@ class TestMetrics(unittest.TestCase):
         self.assertEqual(inserting_distance("simple", "simpler"), 1)
         self.assertEqual(inserting_distance("easy", "hard"), 4)
 
+    def test_inserting_distance_backward(self):
+        self.assertEqual(inserting_distance("simple", "simple", True), 0)
+        self.assertEqual(inserting_distance("best", "the best", True), 4)
+        self.assertEqual(inserting_distance("easy", "hard", True), 4)
+
     def test_inserting_similarity(self):
         self.assertEqual(inserting_similarity("simple", "simple"), 1.0)
         self.assertEqual(inserting_similarity("simple", "simpler"), 1.0 - 1 / 7)
         self.assertEqual(inserting_similarity("easy", "hard"), 0.0)
+
+    def test_inserting_similarity_backward(self):
+        self.assertEqual(inserting_similarity("simple", "simple", True), 1.0)
+        self.assertEqual(inserting_similarity("best", "the best", True), 0.5)
+        self.assertEqual(inserting_similarity("easy", "hard", True), 0.0)

@@ -13,15 +13,19 @@ def cosine_similarity(a: List[float], b: List[float]) -> float:
     return dot_product(a, b) / (frobenius_norm(a) * frobenius_norm(b))
 
 
-def inserting_distance(word1: str, word2: str) -> int:
+def inserting_distance(word1: str, word2: str, backward: bool = False) -> int:
     common_start = 0
     for i in range(min(len(word1), len(word2))):
-        if word1[i] == word2[i]:
+        if (not backward and word1[i] == word2[i]) or (
+            backward and word1[-i - 1] == word2[-i - 1]
+        ):
             common_start += 1
         else:
             break
     return max(len(word1), len(word2)) - common_start
 
 
-def inserting_similarity(word1: str, word2: str) -> float:
-    return 1.0 - (inserting_distance(word1, word2) / max(len(word1), len(word2)))
+def inserting_similarity(word1: str, word2: str, backward: bool = False) -> float:
+    return 1.0 - (
+        inserting_distance(word1, word2, backward) / max(len(word1), len(word2))
+    )
