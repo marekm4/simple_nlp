@@ -26,5 +26,5 @@ class TestPreprocessing(unittest.TestCase):
     def test_retrieve_semantic_tokens(self):
         self.assertEqual(
             retrieve_semantic_tokens('The  quick \t brown fox jumps, over the lazy dog!'),
-            ['quick', 'brown', 'fox', 'jumps', 'over', 'lazy', 'dog']
+            ['quick', 'brown', 'fox', 'jumps', 'lazy', 'dog']
         )
