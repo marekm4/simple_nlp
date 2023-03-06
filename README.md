@@ -30,3 +30,9 @@ metrics.inserting_distance('simple', 'simpler')
 ```python
 metrics.inserting_similarity('simple', 'simpler')
 ```
+
+#### embeddings
+```python
+vectors = embeddings.model()
+vector = vectors["facebook"]
+```
