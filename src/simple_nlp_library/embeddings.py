@@ -1,4 +1,5 @@
 import os
+from operator import add
 from typing import Dict, List
 
 
@@ -13,3 +14,18 @@ def model() -> Dict[str, List[float]]:
         vectors[key] = vector
     file.close()
     return vectors
+
+
+def vectors_average(vectors: List[List[float]]) -> List[float]:
+    total = [.0] * 50
+    count = 0
+    for vector in vectors:
+        total = list(map(add, total, vector))
+        count += 1
+    if count > 0:
+        total = [x / count for x in total]
+    return total
+
+
+def tokens_vector(model: Dict[str, List[float]], tokens: List[str]) -> List[float]:
+    return vectors_average([model[token] for token in tokens if token in model])
