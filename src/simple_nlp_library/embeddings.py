@@ -17,7 +17,7 @@ def model() -> Dict[str, List[float]]:
 
 
 def vectors_average(vectors: List[List[float]]) -> List[float]:
-    total = [.0] * 50
+    total = [0.0] * 50
     count = 0
     for vector in vectors:
         total = list(map(add, total, vector))

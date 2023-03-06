@@ -73,23 +73,24 @@ class TestEmbeddings(unittest.TestCase):
     def test_similarity(self) -> None:
         self.assertAlmostEqual(cosine_similarity(self.vectors["facebook"], self.vectors["twitter"]), 0.93, 2)
 
-    def test_vectors_average(self):
+    def test_vectors_average(self) -> None:
         self.assertEqual(vectors_average([[1.0] * 50, [2.0] * 50, [3.0] * 50]), [2.0] * 50)
 
     def test_tokens_vector(self) -> None:
         self.assertEqual(
             cosine_similarity(
-                tokens_vector(self.vectors, semantic_tokens('Facebook is a')),
+                tokens_vector(self.vectors, semantic_tokens("Facebook is a")),
                 self.vectors["facebook"],
             ),
-            1.0
+            1.0,
         )
 
     def test_tokens_similarity(self) -> None:
         self.assertAlmostEqual(
             cosine_similarity(
-                tokens_vector(self.vectors, semantic_tokens('the slow brown bear jumped over the lazy dog')),
-                tokens_vector(self.vectors, semantic_tokens('the quick red fox jumped over the lazy cat')),
+                tokens_vector(self.vectors, semantic_tokens("the slow brown bear jumped over the lazy dog")),
+                tokens_vector(self.vectors, semantic_tokens("the quick red fox jumped over the lazy cat")),
             ),
-            0.95, 2
+            0.95,
+            2,
         )

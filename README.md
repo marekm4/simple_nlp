@@ -41,7 +41,7 @@ vector = vectors["facebook"]
 ```python
 vectors = embeddings.model()
 metrics.cosine_similarity(
-    embeddings.tokens_vector(vectors, preprocessing.semantic_tokens('the slow brown bear jumped over the lazy dog')),
-    embeddings.tokens_vector(vectors, preprocessing.semantic_tokens('the quick red fox jumped over the lazy cat')),
+    embeddings.tokens_vector(vectors, preprocessing.semantic_tokens("the slow brown bear jumped over the lazy dog")),
+    embeddings.tokens_vector(vectors, preprocessing.semantic_tokens("the quick red fox jumped over the lazy cat")),
 )
 ```
