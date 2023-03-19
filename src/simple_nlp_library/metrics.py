@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Any
 
 
 def dot_product(a: List[float], b: List[float]) -> float:
@@ -25,3 +25,8 @@ def inserting_distance(word1: str, word2: str, backward: bool = False) -> int:
 
 def inserting_similarity(word1: str, word2: str, backward: bool = False) -> float:
     return 1.0 - (inserting_distance(word1, word2, backward) / max(len(word1), len(word2)))
+
+
+def jaccard_similarity(a: List[Any], b: List[Any]) -> float:
+    a_and_b = len(set(a).intersection(set(b)))
+    return a_and_b / (len(a) + len(b) - a_and_b)
