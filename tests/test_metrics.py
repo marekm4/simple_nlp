@@ -6,6 +6,7 @@ from src.simple_nlp_library.metrics import (
     cosine_similarity,
     inserting_distance,
     inserting_similarity,
+    jaccard_similarity,
 )
 
 
@@ -38,3 +39,9 @@ class TestMetrics(unittest.TestCase):
         self.assertEqual(inserting_similarity("simple", "simple", True), 1.0)
         self.assertEqual(inserting_similarity("best", "the best", True), 0.5)
         self.assertEqual(inserting_similarity("easy", "hard", True), 0.0)
+
+    def test_jaccard_similarity(self) -> None:
+        self.assertEqual(jaccard_similarity([1, 2, 3], [1, 2, 3]), 1.0)
+        self.assertEqual(jaccard_similarity([1, 2], [1, 2, 3]), 2 / 3)
+        self.assertEqual(jaccard_similarity([1, 2, 4], [1, 2, 3]), 0.5)
+        self.assertEqual(jaccard_similarity([1, 2, 3], [1, 2, 3, 4]), 0.75)

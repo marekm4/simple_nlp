@@ -31,6 +31,11 @@ metrics.inserting_distance("simple", "simpler")
 metrics.inserting_similarity("simple", "simpler")
 ```
 
+#### jaccard_similarity
+```python
+metrics.jaccard_similarity([1, 2, 3], [1, 2, 3, 4])
+```
+
 #### embeddings
 ```python
 vectors = embeddings.model()
