@@ -5,6 +5,7 @@ from src.simple_nlp_library.preprocessing import (
     lower_letters,
     non_stopword_tokens,
     semantic_tokens,
+    non_social,
 )
 
 
@@ -27,8 +28,14 @@ class TestPreprocessing(unittest.TestCase):
             ["quick", "brown", "fox", "jumps"],
         )
 
+    def test_non_social(self) -> None:
+        self.assertEqual(
+            non_social(["quick", "brown", "fox", "jumps", "@user", "https://domain.com"]),
+            ["quick", "brown", "fox", "jumps"],
+        )
+
     def test_semantic_tokens(self) -> None:
         self.assertEqual(
-            semantic_tokens("The 2 quick \t brown fox jumps, over the lazy dog!"),
+            semantic_tokens("The 2 quick \t brown fox jumps, over the lazy dog! @user"),
             ["quick", "brown", "fox", "jumps", "lazy", "dog"],
         )
