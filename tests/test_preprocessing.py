@@ -18,7 +18,7 @@ class TestPreprocessing(unittest.TestCase):
 
     def test_lower_letters(self) -> None:
         self.assertEqual(
-            lower_letters("The 2quick brown fox jumps-over!"),
+            lower_letters("The quick brown fox jumps-over!"),
             "the quick brown fox jumps over",
         )
 
@@ -36,6 +36,6 @@ class TestPreprocessing(unittest.TestCase):
 
     def test_semantic_tokens(self) -> None:
         self.assertEqual(
-            semantic_tokens("The 2 quick \t brown fox jumps, over the lazy dog! @user"),
-            ["quick", "brown", "fox", "jumps", "lazy", "dog"],
+            semantic_tokens("The 2 quick \t brown foxes jumps, over the lazy dog! @user"),
+            ["2", "quick", "brown", "foxes", "jumps", "lazy", "dog"],
         )

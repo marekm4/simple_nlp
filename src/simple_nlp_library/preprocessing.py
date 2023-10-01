@@ -3,7 +3,7 @@ from typing import List
 
 def lower_letters(text: str) -> str:
     text = text.replace("-", " ")
-    return "".join([c.lower() for c in text if c.isalpha() or c.isspace() or c == "@"])
+    return "".join([c.lower() for c in text if c.isalnum() or c.isspace() or c == "@"])
 
 
 def single_spaces(text: str) -> str:
