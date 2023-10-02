@@ -1,7 +1,7 @@
 import unittest
 from typing import Dict, List
 
-from src.simple_nlp_library.embeddings import model, vectors_average, tokens_vector
+from src.simple_nlp_library.embeddings import vectors_average, tokens_vector, vectors
 from src.simple_nlp_library.metrics import cosine_similarity
 from src.simple_nlp_library.preprocessing import semantic_tokens, stop_words
 
@@ -12,7 +12,7 @@ class TestEmbeddings(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls) -> None:
-        cls.vectors = model()
+        cls.vectors = vectors()
         cls.stop_words = stop_words()
 
     def test_vectors(self) -> None:

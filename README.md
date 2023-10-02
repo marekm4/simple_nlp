@@ -39,13 +39,13 @@ metrics.jaccard_similarity([1, 2, 3], [1, 2, 3, 4])
 
 #### embeddings
 ```python
-vectors = embeddings.model()
+vectors = embeddings.vectors()
 vector = vectors["facebook"]
 ```
 
 #### sentence similarity
 ```python
-vectors = embeddings.model()
+vectors = embeddings.vectors()
 stop_words = preprocessing.stop_words()
 metrics.cosine_similarity(
     embeddings.tokens_vector(vectors, preprocessing.semantic_tokens(stop_words, "the slow brown bear jumped over the lazy dog")),
