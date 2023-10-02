@@ -47,9 +47,10 @@ class TestPreprocessing(unittest.TestCase):
                     <br> <a href="https://google.com">Google It</a> to find an answer, 
                     this is state-of-the-art uncased_model,
                     email me quick_fox@gmail.com or visit my website http://quick-fox.com https://quick-fox.com
-                    Value of PI: 3.14 it is less than 4
+                    Value of PI: 3.14 it is less than 4,
+                    line<br>break
                     """
                 )
             ),
-            "google find answer state art uncased model email visit website value pi 314 less 4",
+            "google find answer state art uncased model email visit website value pi 314 less 4 line break",
         )
