@@ -189,7 +189,7 @@ def non_stopword_tokens(tokens: List[str]) -> List[str]:
 
 def semantic_tokens(text: str) -> List[str]:
     html = re.compile(r"<.*?>")
-    text = html.sub("", text)
+    text = html.sub(" ", text)
     email = re.compile(r"\S*@\S*")
     text = email.sub("", text)
     link = re.compile(r"https?:\S*")
