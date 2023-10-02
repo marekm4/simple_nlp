@@ -5,8 +5,7 @@ from typing import Dict, List
 
 def model() -> Dict[str, List[float]]:
     vectors = {}
-    file = open(os.path.join(os.path.dirname(__file__), "data/glove-wiki-gigaword-50"), "r", encoding="utf8")
-    file.readline()
+    file = open(os.path.join(os.path.dirname(__file__), "data/glove.6B.50d.txt"), "r", encoding="utf8")
     for line in file:
         values = line.split()
         key = values[0]
