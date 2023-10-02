@@ -6,8 +6,8 @@ from src.simple_nlp_library.preprocessing import (
 
 
 class TestPreprocessing(unittest.TestCase):
-    def test_no_hyphens_and_underscores(self) -> None:
-        self.assertEqual(semantic_tokens("state-of-the-art uncased_model"), ["state", "art", "uncased", "model"])
+    def test_removing_hyphens(self) -> None:
+        self.assertEqual(semantic_tokens("state-of-the-art model"), ["state", "art", "model"])
 
     def test_lower_letters(self) -> None:
         self.assertEqual(
@@ -21,13 +21,13 @@ class TestPreprocessing(unittest.TestCase):
             ["quick", "brown", "fox", "jumps"],
         )
 
-    def test_non_stopword_tokens(self) -> None:
+    def test_removing_stopwords(self) -> None:
         self.assertEqual(
-            semantic_tokens("The quick brown fox jumps over"),
+            semantic_tokens("the quick brown fox jumps over"),
             ["quick", "brown", "fox", "jumps"],
         )
 
-    def test_non_social(self) -> None:
+    def test_removing_emails_and_links(self) -> None:
         self.assertEqual(
             semantic_tokens("quick brown fox jumps over @user https://domain.com"),
             ["quick", "brown", "fox", "jumps"],
@@ -35,8 +35,8 @@ class TestPreprocessing(unittest.TestCase):
 
     def test_semantic_tokens(self) -> None:
         self.assertEqual(
-            semantic_tokens("The 2 quick \t brown foxes jumps, over the lazy dog! @user"),
-            ["2", "quick", "brown", "foxes", "jumps", "lazy", "dog"],
+            semantic_tokens("The 2 quick \t red-brown foxes jumps, over the lazy dog and @user"),
+            ["2", "quick", "red", "brown", "foxes", "jumps", "lazy", "dog"],
         )
 
     def test_semantic_text(self) -> None:
@@ -45,12 +45,13 @@ class TestPreprocessing(unittest.TestCase):
                 semantic_tokens(
                     """
                     <br> <a href="https://google.com">Google It</a> to find an answer, 
-                    this is state-of-the-art uncased_model,
-                    email me quick_fox@gmail.com or visit my website http://quick-fox.com https://quick-fox.com
+                    this is state-of-the-art model,
+                    email me quick_fox@gmail.com or visit my website Http://quick-fox.com https://quick-fox.com
                     Value of PI: 3.14 it is less than 4,
                     line<br>break
+                    nice movie 9/10 but wouldn't watch second time
                     """
                 )
             ),
-            "google find answer state art uncased model email visit website value pi 314 less 4 line break",
+            "google find answer state art model email visit website value pi 314 less 4 line break nice movie 9 10 watch second time",
         )
