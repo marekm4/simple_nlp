@@ -1,9 +1,8 @@
 import re
 from typing import List
 
-
-def non_stopword_tokens(tokens: List[str]) -> List[str]:
-    stop_words = [
+stop_words = dict.fromkeys(
+    [
         "i",
         "me",
         "my",
@@ -184,19 +183,14 @@ def non_stopword_tokens(tokens: List[str]) -> List[str]:
         "wouldn",
         "wouldnt",
     ]
-    return [token for token in tokens if token not in dict.fromkeys(stop_words)]
+)
 
 
 def semantic_tokens(text: str) -> List[str]:
-    html = re.compile(r"<.*?>")
-    text = html.sub("", text)
-    email = re.compile(r"\S*@\S*")
-    text = email.sub("", text)
-    link = re.compile(r"https?:\S*")
-    text = link.sub("", text)
     text = text.lower()
-    text = text.replace("-", " ")
-    text = text.replace("_", " ")
-    alphanumeric = re.compile(r"[^a-z0-9 ]+")
-    text = alphanumeric.sub("", text)
-    return non_stopword_tokens(text.split())
+    text = re.sub(r"<[^<]+?>", " ", text)
+    text = re.sub(r"\S*@\S*", "", text)
+    text = re.sub(r"\S*https?\S*", "", text)
+    text = re.sub(r"[\-/]+", " ", text)
+    text = re.sub(r"[^a-z0-9 ]+", "", text)
+    return [word for word in text.split() if word not in stop_words]
