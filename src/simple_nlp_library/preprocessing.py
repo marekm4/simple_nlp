@@ -1,13 +1,5 @@
+import re
 from typing import List
-
-
-def lower_letters(text: str) -> str:
-    text = text.replace("-", " ")
-    return "".join([c.lower() for c in text if c.isalnum() or c.isspace() or c == "@"])
-
-
-def single_spaces(text: str) -> str:
-    return " ".join(text.split())
 
 
 def non_stopword_tokens(tokens: List[str]) -> List[str]:
@@ -195,12 +187,16 @@ def non_stopword_tokens(tokens: List[str]) -> List[str]:
     return [token for token in tokens if token not in dict.fromkeys(stop_words)]
 
 
-def non_social(tokens: List[str]) -> List[str]:
-    return [token for token in tokens if not "@" in token and not token.startswith("http")]
-
-
 def semantic_tokens(text: str) -> List[str]:
-    text = lower_letters(text)
-    text = single_spaces(text)
-    tokens = non_social(non_stopword_tokens(text.split()))
-    return tokens
+    html = re.compile(r"<.*?>")
+    text = html.sub("", text)
+    email = re.compile(r"\S*@\S*")
+    text = email.sub("", text)
+    link = re.compile(r"https?:\S*")
+    text = link.sub("", text)
+    text = text.lower()
+    text = text.replace("-", " ")
+    text = text.replace("_", " ")
+    alphanumeric = re.compile(r"[^a-z0-9 ]+")
+    text = alphanumeric.sub("", text)
+    return non_stopword_tokens(text.split())
