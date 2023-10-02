@@ -3,7 +3,7 @@ from operator import add
 from typing import Dict, List
 
 
-def model() -> Dict[str, List[float]]:
+def vectors() -> Dict[str, List[float]]:
     vectors = {}
     file = open(os.path.join(os.path.dirname(__file__), "data/glove.6B.50d.txt"), "r", encoding="utf8")
     for line in file:
@@ -26,5 +26,5 @@ def vectors_average(vectors: List[List[float]]) -> List[float]:
     return total
 
 
-def tokens_vector(model: Dict[str, List[float]], tokens: List[str]) -> List[float]:
-    return vectors_average([model[token] for token in tokens if token in model])
+def tokens_vector(vectors: Dict[str, List[float]], tokens: List[str]) -> List[float]:
+    return vectors_average([vectors[token] for token in tokens if token in vectors])
