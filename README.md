@@ -13,7 +13,8 @@ python3 -m pip install --upgrade simple_nlp_library
 #### semantic_tokens
 
 ```python
-preprocessing.semantic_tokens("The quick brown fox jumps over the lazy dog")
+stop_words = preprocessing.stop_words()
+preprocessing.semantic_tokens(stop_words, "The quick brown fox jumps over the lazy dog")
 ```
 
 #### cosine_similarity
@@ -45,8 +46,9 @@ vector = vectors["facebook"]
 #### sentence similarity
 ```python
 vectors = embeddings.model()
+stop_words = preprocessing.stop_words()
 metrics.cosine_similarity(
-    embeddings.tokens_vector(vectors, preprocessing.semantic_tokens("the slow brown bear jumped over the lazy dog")),
-    embeddings.tokens_vector(vectors, preprocessing.semantic_tokens("the quick red fox jumped over the lazy cat")),
+    embeddings.tokens_vector(vectors, preprocessing.semantic_tokens(stop_words, "the slow brown bear jumped over the lazy dog")),
+    embeddings.tokens_vector(vectors, preprocessing.semantic_tokens(stop_words, "the quick red fox jumped over the lazy cat")),
 )
 ```
