@@ -3,8 +3,8 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "simple_nlp_library"
-version = "3.0.0"
+name = "simple-nlp-library"
+version = "4.0.0"
 authors = [
   { name="Marek Michalik", email="marekmichalik43@gmail.com" },
 ]
