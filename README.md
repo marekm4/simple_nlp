@@ -5,7 +5,7 @@ Simple NLP library
 
 ### installation
 ```
-python3 -m pip install --upgrade simple_nlp_library
+python3 -m pip install --upgrade simple-nlp-library
 ```
 
 ### api
